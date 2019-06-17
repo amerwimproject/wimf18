@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. All occurrences of existing tokens will be replaced by their appropriate values.
+	4. Blank lines will be removed automatically.
+	5. Remove unnecessary comments before creating your template.
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="authoring-tool" content="Adobe_Animate_CC">
+    <title>wim1</title>
+    <style type="text/css">
+        body {
+            background-image: url("road.jpg");
+            background-size: 660px;
+            -webkit-animation: slide 7s linear infinite;
+           
+        }
+
+        @-webkit-keyframes slide {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 1000px 0PX;
+            }
+        }
+
+        #wimworm {
+            background: url(wworm.png);
+            width: calc(640px / 5);
+            height: 300px;
+            animation: worm 1s steps(5) infinite;
+            position:relative;
+            left: 350px;
+            top: 100px;
+           
+           
+        }
+
+        @keyframes worm {
+            from {
+                background-position: 640px;
+            }
+
+            to {
+                background-position: 0px;
+            }
+        }
+        #gifworm{
+            position:relative;
+            left:100px;
+           
+        }
+    </style>
+
+    <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+    <script src="wim1.js?1560327604279"></script>
+    <script>
+        var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+        function init() {
+            canvas = document.getElementById("canvas");
+            anim_container = document.getElementById("animation_container");
+            dom_overlay_container = document.getElementById("dom_overlay_container");
+            var comp = AdobeAn.getComposition("56EFD3A7380F434AAEEC73EF0B2C18F1");
+            var lib = comp.getLibrary();
+            var loader = new createjs.LoadQueue(false);
+            loader.addEventListener("fileload", function (evt) { handleFileLoad(evt, comp) });
+            loader.addEventListener("complete", function (evt) { handleComplete(evt, comp) });
+            var lib = comp.getLibrary();
+            loader.loadManifest(lib.properties.manifest);
+        }
+        function handleFileLoad(evt, comp) {
+            var images = comp.getImages();
+            if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }
+        }
+        function handleComplete(evt, comp) {
+            //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+            var lib = comp.getLibrary();
+            var ss = comp.getSpriteSheet();
+            var queue = evt.target;
+            var ssMetadata = lib.ssMetadata;
+            for (i = 0; i < ssMetadata.length; i++) {
+                ss[ssMetadata[i].name] = new createjs.SpriteSheet({ "images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames })
+            }
+            exportRoot = new lib.wim1();
+            stage = new lib.Stage(canvas);
+            //Registers the "tick" event listener.
+            fnStartAnimation = function () {
+                stage.addChild(exportRoot);
+                createjs.Ticker.setFPS(lib.properties.fps);
+                createjs.Ticker.addEventListener("tick", stage);
+            }
+            //Code to support hidpi screens and responsive scaling.
+            AdobeAn.makeResponsive(false, 'both', false, 1, [canvas, anim_container, dom_overlay_container]);
+            AdobeAn.compositionLoaded(lib.properties.id);
+            fnStartAnimation();
+        }
+    </script>
+    <!-- write your code here -->
+</head>
+<body onload="init();">
+    
+
+        <div id="animation_container" style=" width:800px; height:100px;">
+            <canvas id="canvas" width="800" height="100" style="position: absolute; display: block; top: 425px;"></canvas>
+            <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:800px; height:100px; position: absolute; left: 0px; top: 0px; display: block;">
+            </div>
+
+        </div>
+
+        <embed src="https://ia800300.us.archive.org/28/items/Racing_game_music/makke__rgame_music.mp3" autostart="true" loop="true" hidden="true">
+
+        <div id="wimworm">
+
+        </div>
+    <div id="gifworm">
+        <img src="gifworm.gif"
+    </div>
+
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 0 350 350" style=" height: 8%; width: 8%;padding:50px 50px;" xml:space="preserve" ;>
+<g id="g1">
+        <circle id="c1" style="fill:#00D7DF;" cx="270" cy="255" r="60" />
+        <circle id="c2" style="fill:#EA348B;" cx="220" cy="255" r="60" />
+        <path id="XMLID_1302_" style="fill:#AF2768;" d="M220,195c-33.137,0-60,26.863-60,60s26.863,60,60,60" />
+        <circle id="c3" style="fill:#FFDA44;" cx="170" cy="255" r="60" />
+        <circle id="c4" style="fill:#FF9811;" cx="120" cy="245" r="60" />
+        <path id="XMLID_1305_" style="fill:#FF5023;" d="M120,185c-33.137,0-60,26.863-60,60s26.863,60,60,60" />
+        <path id="XMLID_1306_" style="fill:#FFDA44;" d="M121.134,17.153C105.75,11,88.291,18.483,82.138,33.866
+		c-4.123,10.308-2.117,21.543,4.28,29.689L73.782,95.146l13.927,5.57l13.928,5.571l12.636-31.59
+		c10.25-1.488,19.451-8.24,23.574-18.548C143.999,40.767,136.517,23.307,121.134,17.153z" />
+        <circle id="c5" style="fill:#003638;" cx="109.992" cy="45.008" r="10" />
+        <path id="XMLID_1307_" style="fill:#FFDA44;" d="M53.582,63.555c6.396-8.146,8.403-19.381,4.28-29.689
+		C51.708,18.483,34.249,11,18.866,17.153S-4,40.767,2.154,56.15c4.123,10.308,13.324,17.06,23.574,18.548l12.636,31.59l13.928-5.571
+		l13.927-5.57L53.582,63.555z" />
+        <circle id="c6" style="fill:#003638;" cx="30.008" cy="45.008" r="10" />
+        <circle id="c7" style="fill:#AF2768;" cx="80" cy="205" r="60" />
+        <circle id="c8" style="fill:#FFDA44;" cx="70" cy="145" r="70" />
+        <path id="XMLID_1310_" style="fill:#FF9811;" d="M70,215c-38.66,0-70-31.341-70-70c0-38.66,31.34-70,70-70" />
+        <path id="XMLID_1311_" style="fill:#FFFFFF;" d="M100,145c0,16.543-13.458,30-30,30s-30-13.457-30-30H20c0,27.57,22.43,50,50,50
+		s50-22.43,50-50H100z" />
+</g>
+        <animate xlink:href="#c1"
+                 attributeName="cx"
+                 attributeType="xml"
+                 dur="1s"
+                 from="270"
+                 to="250"
+                 fill="freeze"
+                 repeatCount="indefinite"
+                 begin="0s" />
+        <animate xlink:href="#c2"
+                 attributeName="cx"
+                 attributeType="xml"
+                 dur="1s"
+                 from="220"
+                 to="200"
+                 fill="freeze"
+                 repeatCount="indefinite"
+                 begin="0s" />
+        <animate xlink:href="#c3"
+                 attributeName="cx"
+                 attributeType="xml"
+                 dur="1s"
+                 from="170"
+                 to="150"
+                 fill="freeze"
+                 repeatCount="indefinite"
+                 begin="0s" />
+        <animate xlink:href="#c4"
+                 attributeName="cx"
+                 attributeType="xml"
+                 dur="1s"
+                 from="120"
+                 to="100"
+                 fill="freeze"
+                 repeatCount="indefinite"
+                 begin="0s" />
+        <animate xlink:href="#c7"
+                 attributeName="cx"
+                 attributeType="xml"
+                 dur="1s"
+                 from="80"
+                 to="60"
+                 fill="freeze"
+                 repeatCount="indefinite"
+                 begin="0s" />
+        <animate xlink:href="#c8"
+                 attributeName="cx"
+                 attributeType="xml"
+                 dur="1s"
+                 from="70"
+                 to="65"
+                 fill="freeze"
+                 repeatCount="indefinite"
+                 begin="0s" />
+        <animate xlink:href="#c5"
+                 attributeName="cx"
+                 attributeType="xml"
+                 dur="1s"
+                 from="109.992"
+                 to="121"
+                 fill="freeze"
+                 repeatCount="indefinite"
+                 begin="0s" />
+        <animate xlink:href="#c6"
+                 attributeName="cx"
+                 attributeType="xml"
+                 dur="1s"
+                 from="30"
+                 to="41"
+                 fill="freeze"
+                 repeatCount="indefinite"
+                 begin="0s" />
+
+                
+</svg>
+
+    
+</body>
+</html>
